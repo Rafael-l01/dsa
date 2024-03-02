@@ -15,16 +15,14 @@ class HashMap:
         if self.hashMap[index] == None:
             self.hashMap[index] = []
 
-        found = False
         for i, pair in enumerate(self.hashMap[index]):
             recordKey, recordValue = pair
 
             if recordKey == key:
-                found = True
                 self.hashMap[index][i] = [key, value]
+                return
 
-        if not found:
-            self.hashMap[index].append([key, value])
+        self.hashMap[index].append([key, value])
 
     def getItem(self, key: str) -> int:
         index = self.__hash(key)
