@@ -23,19 +23,21 @@ class HashSet:
     def contains(self, value: str) -> bool:
         index = self.__hash(value)
 
-        for recordValue in self.hashSet[index]:
-            if recordValue == value:
-                return True
+        if self.hashSet[index] is not None:
+            for recordValue in self.hashSet[index]:
+                if recordValue == value:
+                    return True
 
         return False
 
     def removeItem(self, value: str) -> None:
         index = self.__hash(value)
 
-        for i, recordValue in enumerate(self.hashSet[index]):
-            if recordValue == value:
-                del self.hashSet[index][i]
-                return
+        if self.hashSet[index] is not None:
+            for i, recordValue in enumerate(self.hashSet[index]):
+                if recordValue == value:
+                    del self.hashSet[index][i]
+                    return
 
     def getValues(self) -> list:
         values = []
