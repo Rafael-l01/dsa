@@ -1,6 +1,8 @@
 class HashMap:
-    def __init__(self, size: int = 7) -> None:
-        self.hashMap = [None] * size
+    def __init__(self, capacity: int = 7) -> None:
+        self.hashMap = [None] * capacity
+        self.size = 0
+        self.loadFactor = 0.75
 
     def __hash(self, key: str):
         myHash = 0
@@ -24,6 +26,11 @@ class HashMap:
 
         self.hashMap[index].append([key, value])
 
+        self.size += 1
+
+        if (self.size / len(self.hashMap)) >= self.loadFactor:
+            self.rehash()
+
     def getItem(self, key: str) -> int:
         index = self.__hash(key)
 
@@ -45,6 +52,7 @@ class HashMap:
 
                 if recordKey == key:
                     del self.hashMap[index][i]
+                    self.size -= 1
                     return
 
     def getKeys(self) -> list:
@@ -57,6 +65,19 @@ class HashMap:
                     keys.append(recordKey)
 
         return keys
+
+    def rehash(self):
+        oldMap = self.hashMap
+
+        newCapacity = len(oldMap) * 2
+        self.hashMap = [None] * newCapacity
+        self.size = 0
+
+        for bucket in oldMap:
+            if bucket is not None:
+                for pair in bucket:
+                    recordKey, recordValue = pair
+                    self.setItem(recordKey, recordValue)
 
     def __str__(self):
         mapStr = "{"
