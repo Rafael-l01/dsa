@@ -33,3 +33,19 @@ class PrefixSumProblem:
 
     def sumRange(self, left: int, right: int) -> int:
         return self.prefixSum[right + 1] - self.prefixSum[left]
+
+
+def prefixSum2D(matrix):
+    prefixSum = [[0] * (len(matrix[0]) + 1) for i in range(len(matrix) + 1)]
+
+    for i in range(len(matrix)):
+        for j in range(len(matrix[i])):
+            prefixSum[i + 1][j + 1] = (
+                prefixSum[i + 1][j]
+                + prefixSum[i][j + 1]
+                - prefixSum[i][j]
+                + matrix[i][j]
+            )
+
+    return prefixSum
+
