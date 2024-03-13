@@ -28,6 +28,9 @@ class Stack:
         self.height -= 1
         return oldTop
 
+    def top(self):
+        return self.top
+
     def isEmpty(self) -> bool:
         return self.height == 0
 
@@ -57,6 +60,9 @@ class StackArray:
 
         self.height -= 1
         return self.stack.pop()
+
+    def top(self):
+        return self.stack[-1]
 
     def isEmpty(self):
         return self.height == 0
