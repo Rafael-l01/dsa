@@ -3,6 +3,10 @@ def binarySearch(nums, target):
     end = len(nums) - 1
 
     while start <= end:
+        # in languages like C++ or Java calculating the middle like middle = (start + end) // 2
+        # can generate an integer overflow if the sum of start and end is bigger than the integer
+        # maximum supported number, to solve it:
+        # middle = start + ((end - start) // 2)
         middle = (start + end) // 2
         if target > nums[middle]:
             start = middle + 1
