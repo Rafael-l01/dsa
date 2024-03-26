@@ -27,22 +27,18 @@ class SinglyLinkedList:
         if self.head == None:
             return None
 
+        temp = self.head
         if self.head == self.tail:
-            temp = self.head
             self.head = None
             self.tail = None
+        else:
+            pre = self.head
+            while temp.next != None:
+                pre = temp
+                temp = temp.next
 
-            self.length -= 1
-            return temp
-
-        pre = self.head
-        temp = self.head
-        while temp.next != None:
-            pre = temp
-            temp = temp.next
-
-        self.tail = pre
-        self.tail.next = None
+            self.tail = pre
+            self.tail.next = None
 
         self.length -= 1
         return temp
@@ -80,6 +76,9 @@ class SinglyLinkedList:
         return temp
 
     def get(self, index):
+        if index < 0:
+            return None
+
         current = self.head
         i = 0
         while current is not None:
