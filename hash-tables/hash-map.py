@@ -97,3 +97,15 @@ class HashMap:
 
         return mapStr
 
+    def printMap(self):
+        mapStr = "{\n"
+        for index, pairs in enumerate(self.hashMap):
+            if pairs is not None:
+                mapStr += str(index) + ": " + str(pairs) + "\n"
+            else:
+                mapStr += str(index) + ": " + "None\n"
+
+        mapStr += "}"
+
+        return mapStr
+

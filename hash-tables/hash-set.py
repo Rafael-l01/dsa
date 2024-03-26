@@ -66,3 +66,15 @@ class HashSet:
 
         return setStr
 
+    def printSet(self):
+        setStr = "{"
+        for bucket in self.hashSet:
+            if bucket is not None:
+                setStr += str(bucket) + ", "
+            else:
+                setStr += "None, "
+
+        setStr = setStr[0:-2] + "}"
+
+        return setStr
+
