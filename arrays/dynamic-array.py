@@ -50,9 +50,6 @@ class DynamicArray:
             raise Exception("Pop from empty list")
 
         last_position = self.size - 1
-
-        self.isPositionValid(last_position)
-
         value = self.array[last_position]
 
         self.array[last_position] = 0
