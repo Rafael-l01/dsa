@@ -1,3 +1,4 @@
+# iterative binary search
 def binarySearch(nums, target):
     start = 0
     end = len(nums) - 1
@@ -19,3 +20,24 @@ def binarySearch(nums, target):
 
 
 binarySearch([0, 1, 2, 3, 4, 5, 6], 0)
+
+
+# recursive binary search
+def __rBinarySearch(array, left, right, target):
+    if left > right:
+        return False
+
+    middle = left + ((right - left) // 2)
+    if target == array[middle]:
+        return True
+
+    if target > array[middle]:
+        return __rBinarySearch(array, middle + 1, right, target)
+
+    return __rBinarySearch(array, left, middle - 1, target)
+
+
+def rBinarySearch(array, target):
+    left = 0
+    right = len(array) - 1
+    return __rBinarySearch(array, left, right, target)
