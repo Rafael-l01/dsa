@@ -205,3 +205,37 @@ class BinarySearchTree:
                 currentNode = stack.pop()
 
         return result
+
+    def dfsInOrder(self):
+        results = []
+
+        def traverse(currentNode):
+            if currentNode.left is not None:
+                traverse(currentNode.left)
+
+            results.append(currentNode.value)
+
+            if currentNode.right is not None:
+                traverse(currentNode.right)
+
+        if self.root:
+            traverse(self.root)
+
+        return results
+
+    def iterativeDfsInOrder(self):
+        result = []
+        stackVisitedNodes = []
+
+        currentNode = self.root
+        while currentNode or stackVisitedNodes:
+            while currentNode:
+                stackVisitedNodes.append(currentNode)
+                currentNode = currentNode.left
+
+            currentNode = stackVisitedNodes.pop()
+            result.append(currentNode.value)
+            currentNode = currentNode.right
+
+        return result
+
