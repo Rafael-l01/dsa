@@ -1,3 +1,6 @@
+import collections
+
+
 class Node:
     def __init__(self, value):
         self.value = value
@@ -122,3 +125,51 @@ class BinarySearchTree:
 
         return currentNode.value
 
+    def BFS(self):
+        if self.root is None:
+            return []
+
+        currentNode = self.root
+        queue = []
+        results = []
+
+        queue.append(currentNode)
+
+        while len(queue) > 0:
+            currentNode = queue.pop(0)
+            results.append(currentNode.value)
+
+            if currentNode.left is not None:
+                queue.append(currentNode.left)
+
+            if currentNode.right is not None:
+                queue.append(currentNode.right)
+
+        return results
+
+    def bfsWithLevelDivision(self):
+        if self.root is None:
+            return []
+
+        result = []
+
+        queue = collections.deque()
+        queue.append(self.root)
+
+        while len(queue) > 0:
+            queueLength = len(queue)
+            level = []
+
+            for i in range(queueLength):
+                currentNode = queue.popleft()
+                level.append(currentNode.val)
+
+                if currentNode.left is not None:
+                    queue.append(currentNode.left)
+
+                if currentNode.right is not None:
+                    queue.append(currentNode.right)
+
+            result.append(level)
+
+        return result
