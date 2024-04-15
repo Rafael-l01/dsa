@@ -173,3 +173,35 @@ class BinarySearchTree:
             result.append(level)
 
         return result
+
+    def dfsPreOrder(self):
+        results = []
+
+        def traverse(currentNode):
+            results.append(currentNode.value)
+
+            if currentNode.left is not None:
+                traverse(currentNode.left)
+
+            if currentNode.right is not None:
+                traverse(currentNode.right)
+
+        if self.root:
+            traverse(self.root)
+
+        return results
+
+    def iterativeDfsPreOrder(self):
+        result = []
+        stack = []
+
+        currentNode = self.root
+        while currentNode or stack:
+            if currentNode:
+                result.append(currentNode.val)
+                stack.append(currentNode.right)
+                currentNode = currentNode.left
+            else:
+                currentNode = stack.pop()
+
+        return result
