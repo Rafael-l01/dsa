@@ -239,3 +239,44 @@ class BinarySearchTree:
 
         return result
 
+    def dfsPostOrder(self):
+        results = []
+
+        def traverse(currentNode):
+            if currentNode.left is not None:
+                traverse(currentNode.left)
+
+            if currentNode.right is not None:
+                traverse(currentNode.right)
+
+            results.append(currentNode.value)
+
+        if self.root:
+            traverse(self.root)
+
+        return results
+
+    def iterativeDfsPostOrder(self):
+        stack = [self.root]
+        visit = [False]
+
+        result = []
+
+        while stack:
+            currentNode, visited = stack.pop(), visit.pop()
+
+            if currentNode:
+                if visited:
+                    result.append(currentNode.value)
+                else:
+                    stack.append(currentNode)
+                    visit.append(True)
+
+                    stack.append(currentNode.right)
+                    visit.append(False)
+
+                    stack.append(currentNode.left)
+                    visit.append(False)
+
+        return result
+
